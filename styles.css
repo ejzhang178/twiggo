@@ -1,0 +1,221 @@
+:root {
+  --color-bg: #eaf7ea;
+  --color-primary: #4f8f4f;
+  --color-primary-light: #8bc98b;
+  --color-accent: #ffcf56;
+  --color-text: #2b2b2b;
+  --color-locked: #c9c9c9;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  font-size: 18px;
+}
+
+.site-header {
+  text-align: center;
+  padding: 1rem;
+}
+
+.site-header h1 {
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+/* Map */
+.trail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.map-node {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: white;
+  border: 3px solid var(--color-primary-light);
+  border-radius: 999px;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 1.3rem;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.08);
+}
+
+.map-node--locked {
+  border-color: var(--color-locked);
+  color: #888;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.map-node--complete {
+  border-color: var(--color-accent);
+  background: #fff9e6;
+}
+
+.map-node__icon {
+  font-size: 1.8rem;
+}
+
+.map-mascot {
+  animation: bob 2s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Level screens */
+.level {
+  position: relative;
+  min-height: 100vh;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.level-mascot {
+  width: 120px;
+}
+
+.back-link {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1.8rem;
+  text-decoration: none;
+}
+
+.fruit-tray {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 90px;
+}
+
+.fruit-item {
+  font-size: 2.8rem;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  transition: transform 0.15s;
+}
+
+.fruit-item--dragging {
+  transform: scale(1.15);
+  z-index: 10;
+}
+
+.fruit-item--placed {
+  cursor: default;
+  transform: scale(0.9);
+}
+
+.fruit-item--shake {
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+.bins {
+  display: flex;
+  gap: 2rem;
+}
+
+.bin {
+  width: 140px;
+  min-height: 140px;
+  background: white;
+  border: 4px dashed var(--color-primary-light);
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.bin__label {
+  font-size: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+.continue-btn {
+  font-size: 3rem;
+  background: var(--color-accent);
+  border: none;
+  border-radius: 999px;
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Learning meter (level 2) */
+.learning-meter {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.learning-meter__segment {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-locked);
+}
+
+.learning-meter__segment--filled {
+  background: var(--color-accent);
+}
+
+/* Prediction round (level 3) */
+.prediction-fruit {
+  font-size: 4rem;
+}
+
+.bin--guessed {
+  border-style: solid;
+  border-color: var(--color-accent);
+}
+
+.next-btn {
+  font-size: 1.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--color-primary-light);
+  cursor: pointer;
+}
+
+.end-screen {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.prediction-bins[hidden] {
+  display: none;
+}
