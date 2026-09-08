@@ -13,6 +13,7 @@ export function attachDrag(item, onDrop) {
     const onUp = (upEvent) => {
       item.removeEventListener('pointermove', onMove);
       item.removeEventListener('pointerup', onUp);
+      item.removeEventListener('pointercancel', onUp);
       item.classList.remove('fruit-item--dragging');
 
       item.style.pointerEvents = 'none';
@@ -30,5 +31,6 @@ export function attachDrag(item, onDrop) {
 
     item.addEventListener('pointermove', onMove);
     item.addEventListener('pointerup', onUp);
+    item.addEventListener('pointercancel', onUp);
   });
 }
