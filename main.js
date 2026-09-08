@@ -10,8 +10,8 @@ function renderMap() {
   trail.className = 'trail';
 
   levels.forEach((level) => {
-    const unlocked = isLevelUnlocked(level.id, levels);
     const isComplete = completed.includes(level.id);
+    const unlocked = isComplete || isLevelUnlocked(level.id, levels);
 
     const node = document.createElement(unlocked ? 'a' : 'div');
     node.className =
