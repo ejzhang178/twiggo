@@ -30,6 +30,7 @@ function init() {
 }
 
 function handleDrop(item, bin) {
+  if (item.classList.contains('fruit-item--placed')) return;
   if (bin && bin.dataset.match === item.dataset.color) {
     bin.appendChild(item);
     item.classList.add('fruit-item--placed');
@@ -43,6 +44,7 @@ function handleDrop(item, bin) {
 }
 
 function onLevelComplete() {
+  markLevelComplete(1);
   playDing();
   document.getElementById('mascot-slot').innerHTML = mascotSVG('happy');
   const continueBtn = document.createElement('button');
@@ -50,7 +52,6 @@ function onLevelComplete() {
   continueBtn.textContent = '➡️';
   continueBtn.setAttribute('aria-label', 'Continue');
   continueBtn.addEventListener('click', () => {
-    markLevelComplete(1);
     window.location.href = '../index.html';
   });
   document.querySelector('.level').appendChild(continueBtn);
