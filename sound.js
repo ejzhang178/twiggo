@@ -4,7 +4,14 @@ function getContext() {
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
   return audioCtx;
+}
+
+export function primeAudio() {
+  getContext();
 }
 
 function beep(frequency, duration, type = 'sine') {
